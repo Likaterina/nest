@@ -10,7 +10,7 @@ export class ConfigService {
   private readonly envConfig: EnvConfig
 
   constructor(@Inject(CONFIG_OPTIONS) private options) {
-    const filePath = `${process.env.NODE_ENV}.env`
+    const filePath = `${process.env.NODE_ENV || "conf"}.env`
     const envFile = path.resolve(__dirname, "../../", options.folder, filePath)
     this.envConfig = dotenv.parse(fs.readFileSync(envFile))
   }
@@ -20,15 +20,3 @@ export class ConfigService {
   }
 }
 
-export default () => ({
-  port: process.env.PORT,
-  database: {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    entities: [],
-    synchronize: true
-  }
-})
