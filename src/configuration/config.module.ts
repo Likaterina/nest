@@ -8,13 +8,13 @@ export interface ConfigModuleOptions {
 
 @Module({})
 export class ConfigModule {
-  static register(): DynamicModule {
+  static register(options: ConfigModuleOptions): DynamicModule {
     return {
       module: ConfigModule,
       providers: [
         {
           provide: CONFIG_OPTIONS,
-          useValue: Options,
+          useValue: options,
         },
         ConfigService,
       ],

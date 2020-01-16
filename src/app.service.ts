@@ -21,6 +21,10 @@ export class AppService {
     return this.cats
   }
 
+  getPort(): string {
+    return this.port
+  }
+
   getHello(): string {
     return "Cat"
   }

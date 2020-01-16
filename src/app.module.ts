@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common"
 import { AppController } from "./app.controller"
 import { AppService } from "./app.service"
-import { ConfigService } from "@nestjs/config"
+import { ConfigService } from './configuration/config.service';
 import { TypeOrmModule } from "@nestjs/typeorm"
 import * as Joi from "@hapi/joi"
 import { ConfigModule, ConfigModuleOptions } from "./configuration/config.module"
