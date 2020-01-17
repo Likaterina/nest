@@ -5,6 +5,7 @@ import { ConfigService } from "./configuration/config.service"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import * as Joi from "@hapi/joi"
 import { ConfigModule } from "./configuration/config.module"
+import { Connection } from "typeorm"
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { ConfigModule } from "./configuration/config.module"
       })
     ),
     TypeOrmModule.forRootAsync({
-      
+      imports: [ConfigModule],
       useFactory: (сonfigService: ConfigService) => ({
         type: "mysql",
         host: сonfigService.get("DB_HOST"),
@@ -41,4 +42,6 @@ import { ConfigModule } from "./configuration/config.module"
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule {}
+export class AppModule {
+ 
+}

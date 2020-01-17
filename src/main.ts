@@ -6,7 +6,7 @@ import { AppService} from "./app.service"
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  const port = app.select(AppModule).get(AppService.getPort(), { strict: true })
+  const port = app.select(AppModule).get(AppService, { strict: true })
   const options = new DocumentBuilder()
     .setTitle("Cats example")
     .setDescription("The cats API description")
@@ -16,6 +16,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup("api", app, document)
 
-  await app.listen(port)
+  await app.listen(process.env.PORT)
 }
 bootstrap()
